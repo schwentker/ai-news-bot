@@ -29,6 +29,15 @@ interface TabType {
   icon: React.ReactNode
 }
 
+interface Story {
+  id: string
+  title: string
+  summary: string
+  source: string
+  url: string
+  publishedAt: string
+  relevanceScore?: number
+}
 interface Query {
   id: string
   text: string
@@ -36,7 +45,7 @@ interface Query {
   sources: string[]
   storiesFound: number
   timeStarted: string
-  results?: any[]
+  results?: Story[]
 }
 
 interface ActivityItem {

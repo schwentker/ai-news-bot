@@ -1,0 +1,313 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to research assistant color palette with cyan accents */
+  --background: #ffffff;
+  --foreground: #4b5563;
+  --card: #ffffff;
+  --card-foreground: #4b5563;
+  --popover: #ffffff;
+  --popover-foreground: #4b5563;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --secondary: #0ea5e9;
+  --secondary-foreground: #ffffff;
+  --muted: #6b7280;
+  --muted-foreground: #ffffff;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
+  --destructive: #be123c;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #f9fafb;
+  --ring: #0891b2;
+  --chart-1: #0891b2;
+  --chart-2: #0ea5e9;
+  --chart-3: #67e8f9;
+  --chart-4: #a7f3d0;
+  --chart-5: #fde68a;
+  --radius: 0.5rem;
+  --sidebar: #f9fafb;
+  --sidebar-foreground: #4b5563;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #4b5563;
+  --sidebar-accent: #0ea5e9;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #0891b2;
+}
+
+.dark {
+  /* Dark mode with research-friendly colors */
+  --background: #0f172a;
+  --foreground: #e2e8f0;
+  --card: #1e293b;
+  --card-foreground: #e2e8f0;
+  --popover: #1e293b;
+  --popover-foreground: #e2e8f0;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --secondary: #0ea5e9;
+  --secondary-foreground: #ffffff;
+  --muted: #475569;
+  --muted-foreground: #94a3b8;
+  --accent: #0ea5e9;
+  --accent-foreground: #ffffff;
+  --destructive: #be123c;
+  --destructive-foreground: #ffffff;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #0891b2;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-primary: #0f172a;
+  --sidebar-primary-foreground: #e2e8f0;
+  --sidebar-accent: #0ea5e9;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #334155;
+  --sidebar-ring: #0891b2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Mission Control Center custom styles */
+.mission-control-header {
+  @apply bg-card border-b border-border shadow-lg;
+}
+
+.status-indicator {
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.status-idle {
+  @apply bg-muted text-muted-foreground;
+}
+
+.status-running {
+  @apply bg-primary/20 text-primary border border-primary/30;
+  animation: pulse-glow 2s infinite;
+}
+
+.status-complete {
+  @apply bg-green-500/20 text-green-400 border border-green-500/30;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.control-card {
+  @apply bg-card border border-border rounded-lg p-6 hover:shadow-xl hover:border-primary/50 transition-all duration-300;
+}
+
+.control-card:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.primary-action-button {
+  @apply bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-all duration-200;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.primary-action-button:hover {
+  box-shadow: 0 6px 30px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.quick-action-button {
+  @apply bg-muted text-muted-foreground px-4 py-2 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200;
+}
+
+.progress-section {
+  @apply bg-card border border-border rounded-lg p-6 space-y-4;
+}
+
+.progress-bar {
+  @apply w-full bg-muted rounded-full h-3 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-gradient-to-r from-primary to-blue-400 transition-all duration-500;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.log-entry {
+  @apply text-sm text-muted-foreground font-mono bg-muted/30 px-3 py-2 rounded border-l-2 border-primary/50;
+}
+
+.activity-timeline {
+  @apply space-y-3;
+}
+
+.timeline-item {
+  @apply flex items-center gap-3 p-3 bg-card/50 rounded-lg border border-border/50;
+}
+
+.timeline-dot {
+  @apply w-3 h-3 rounded-full bg-primary flex-shrink-0;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.stat-card {
+  @apply bg-card border border-border rounded-lg p-4 text-center;
+}
+
+.stat-number {
+  @apply text-3xl font-bold text-foreground;
+}
+
+.stat-label {
+  @apply text-sm text-muted-foreground mt-1;
+}
+
+.custom-input {
+  @apply bg-input border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200;
+}
+
+.cancel-button {
+  @apply bg-destructive text-destructive-foreground px-4 py-2 rounded-lg hover:bg-destructive/90 transition-colors;
+}
+
+.view-button {
+  @apply bg-primary/20 text-primary border border-primary/30 px-4 py-2 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200;
+}
+
+.start-button {
+  @apply bg-muted text-muted-foreground px-4 py-2 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200;
+}
+
+/* Updated custom styles for research interface */
+.research-header {
+  @apply bg-card border-b border-border shadow-sm;
+}
+
+.query-section {
+  @apply bg-card border border-border rounded-lg p-6 shadow-sm;
+}
+
+.query-textarea {
+  @apply w-full min-h-32 bg-input border border-border rounded-lg p-4 text-foreground placeholder-muted-foreground resize-none focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200;
+}
+
+.example-dropdown {
+  @apply bg-input border border-border rounded-lg px-3 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer;
+}
+
+.source-checkbox {
+  @apply flex items-center gap-2 text-sm text-foreground;
+}
+
+.time-selector {
+  @apply bg-input border border-border rounded-lg px-3 py-2 text-sm text-foreground focus:ring-2 focus:ring-ring focus:border-primary;
+}
+
+.research-button {
+  @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-sm;
+}
+
+.active-queries-section {
+  @apply bg-card border border-border rounded-lg p-6 shadow-sm;
+}
+
+.query-item {
+  @apply bg-input border border-border rounded-lg p-4 space-y-3;
+}
+
+.query-progress {
+  @apply w-full bg-muted rounded-full h-2 overflow-hidden;
+}
+
+.query-progress-fill {
+  @apply h-full bg-primary transition-all duration-500;
+}
+
+.results-section {
+  @apply bg-card border border-border rounded-lg p-6 shadow-sm;
+}
+
+.story-card {
+  @apply bg-input border border-border rounded-lg p-4 hover:shadow-md hover:border-primary/50 transition-all duration-200;
+}
+
+.relevance-score {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.score-high {
+  @apply bg-green-100 text-green-800;
+}
+
+.score-medium {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.score-low {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.add-to-queue-button {
+  @apply bg-secondary text-secondary-foreground px-3 py-1 rounded text-sm hover:bg-secondary/90 transition-colors;
+}
+
+.export-button {
+  @apply bg-muted text-muted-foreground px-4 py-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors;
+}

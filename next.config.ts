@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  basePath: '/ai-news-bot',
+  assetPrefix: '/ai-news-bot',
+  trailingSlash: true,
 };
 
 export default nextConfig;
